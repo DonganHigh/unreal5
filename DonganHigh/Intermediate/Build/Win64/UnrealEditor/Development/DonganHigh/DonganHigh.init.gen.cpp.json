@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\administrator\\unreal5\\donganhigh\\intermediate\\build\\win64\\unrealeditor\\inc\\donganhigh\\donganhigh.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\administrator\\unreal5\\donganhigh\\intermediate\\build\\win64\\donganhigheditor\\development\\engine\\sharedpch.engine.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\users\\administrator\\unreal5\\donganhigh\\intermediate\\build\\win64\\unrealeditor\\development\\donganhigh\\definitions.donganhigh.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

@@ -5,7 +5,7 @@
 #define LogLine() { CLog::Log(__FILE__, __FUNCTION__, __LINE__); }
 #define PrintLine() { CLog::Print(__FILE__, __FUNCTION__, __LINE__); }
 
-class CPP_PORTFOLIO_API CLog
+class DONGANHIGH_API CLog
 {
 public:
 	static void Log(int32 InValue);

@@ -24,7 +24,7 @@
 	Text->Text = FText::FromString(GetName().Replace(L"Default__", L""));\
 }
 
-class CPP_PORTFOLIO_API CHelpers
+class DONGANHIGH_API CHelpers
 {
 public:
 	template<typename T>

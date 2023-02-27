@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "DonganHigh",
+			"Path": "C:\\Users\\Administrator\\unreal5\\DonganHigh\\Source\\DonganHigh.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "DonganHighEditor",
+			"Path": "C:\\Users\\Administrator\\unreal5\\DonganHigh\\Source\\DonganHighEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
