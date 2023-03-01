@@ -1,8 +1,7 @@
 #include "CEnemy.h"
 #include "Global.h"
 #include "CEnemyAIController.h"
-
-#include "BehaviorTree/BehaviorTree.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ACEnemy::ACEnemy()
 {
@@ -18,9 +17,7 @@ ACEnemy::ACEnemy()
 	//CHelpers::GetClass<UCPlayerAnimInstance>(&animInstance, "_C'");
 	//GetMesh()->SetAnimClass(animInstance);
 
-	CHelpers::GetClass<AController>(&AIControllerClass, "Class'/Script/DonganHigh.CEnemyAIController_C'");
-
-	CHelpers::GetBTObject<UBehaviorTree>(&BehaviorTree, "BehaviorTree'/Game/Characters/Enemy/BPEnemyBehaviorTree.BPEnemyBehaviorTree'");
+	AIControllerClass = ACEnemyAIController::StaticClass();
 }
 
 void ACEnemy::BeginPlay()
@@ -28,11 +25,11 @@ void ACEnemy::BeginPlay()
 	Super::BeginPlay();
 	
 	Health = MaxHealth;
+	GetCharacterMovement()->MaxWalkSpeed = 200.0f;
 
 }
 
 void ACEnemy::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }

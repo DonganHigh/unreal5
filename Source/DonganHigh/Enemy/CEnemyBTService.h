@@ -14,5 +14,8 @@ public:
 protected:
 	virtual void TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
-private:
+public:
+	UPROPERTY(EditAnywhere)
+	FBlackboardKeySelector Target;
+
 };

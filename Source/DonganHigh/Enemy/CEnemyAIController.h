@@ -13,6 +13,15 @@ public:
 	ACEnemyAIController();
 	virtual void OnPossess(APawn* InPawn) override;
 
+public:
+	static const FName Key_SelfActor;
+	static const FName Key_TargetActor;
+
 private:
-	class ACEnemy* CEnemy;
+	UPROPERTY(EditAnywhere)
+		class UBlackboardData* BlackBoardData;
+
+	UPROPERTY(EditAnywhere)
+		class UBehaviorTree* BehaviorTree;
+
 };
