@@ -7,6 +7,7 @@
 
 const FName ACEnemyAIController::Key_SelfActor(TEXT("SelfActor"));
 const FName ACEnemyAIController::Key_TargetActor(TEXT("TargetActor"));
+const FName ACEnemyAIController::Key_AIBehavior(TEXT("EAIBehavior"));
 
 ACEnemyAIController::ACEnemyAIController()
 {

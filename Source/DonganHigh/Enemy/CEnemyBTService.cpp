@@ -14,6 +14,8 @@ void UCEnemyBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
+	float DistanceToPlayer = 0.0f;
+
 	APawn* ControllingPawn = OwnerComp.GetAIOwner()->GetCharacter();
 	CheckNull(ControllingPawn);
 
@@ -38,7 +40,31 @@ void UCEnemyBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 			if (Character->GetController()->IsPlayerController())
 			{
 				OwnerComp.GetBlackboardComponent()->SetValueAsObject(ACEnemyAIController::Key_TargetActor, Character);
+				DistanceToPlayer = ControllingPawn->GetDistanceTo(Character);
 			}
 		}
 	}
+	else
+	{
+		OwnerComp.GetBlackboardComponent()->SetValueAsObject(ACEnemyAIController::Key_TargetActor, nullptr);
+	}
+
+	if (OwnerComp.GetBlackboardComponent()->GetValueAsObject(ACEnemyAIController::Key_TargetActor) == nullptr)
+	{
+		AIBehavior = EAIBehavior::Wait;
+	}
+	else
+	{
+		if (DistanceToPlayer < 150.0f)
+		{
+			AIBehavior = EAIBehavior::Attack;
+		}
+		else
+		{
+			AIBehavior = EAIBehavior::Approach;
+		}
+		
+	}
+
+	OwnerComp.GetBlackboardComponent()->SetValueAsEnum(ACEnemyAIController::Key_AIBehavior, (uint8)AIBehavior);
 }

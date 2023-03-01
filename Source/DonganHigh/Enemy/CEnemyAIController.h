@@ -16,6 +16,7 @@ public:
 public:
 	static const FName Key_SelfActor;
 	static const FName Key_TargetActor;
+	static const FName Key_AIBehavior;
 
 private:
 	UPROPERTY(EditAnywhere)

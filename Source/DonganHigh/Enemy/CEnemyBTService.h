@@ -4,6 +4,16 @@
 #include "BehaviorTree/BTService.h"
 #include "CEnemyBTService.generated.h"
 
+UENUM(BlueprintType)
+enum class EAIBehavior : uint8
+{
+	Wait UMETA(DisplayName = "Wait"), 
+	Patrol UMETA(DisplayName = "Patrol"), 
+	Approach UMETA(DisplayName = "Approach"), 
+	Attack UMETA(DisplayName = "Attack"), 
+	Hitted UMETA(DisplayName = "Hitted"),
+};
+
 UCLASS()
 class DONGANHIGH_API UCEnemyBTService : public UBTService
 {
@@ -18,4 +28,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	FBlackboardKeySelector Target;
 
+private:
+	EAIBehavior AIBehavior = EAIBehavior::Wait;
 };
