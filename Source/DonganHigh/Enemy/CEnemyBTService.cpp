@@ -51,7 +51,7 @@ void UCEnemyBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	if (OwnerComp.GetBlackboardComponent()->GetValueAsObject(ACEnemyAIController::Key_TargetActor) == nullptr)
 	{
-		AIBehavior = EAIBehavior::Wait;
+		AIBehavior = EAIBehavior::Patrol;
 	}
 	else
 	{

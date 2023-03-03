@@ -8,6 +8,7 @@
 const FName ACEnemyAIController::Key_SelfActor(TEXT("SelfActor"));
 const FName ACEnemyAIController::Key_TargetActor(TEXT("TargetActor"));
 const FName ACEnemyAIController::Key_AIBehavior(TEXT("EAIBehavior"));
+const FName ACEnemyAIController::Key_PatrolPosition(TEXT("PatrolPosition"));
 
 ACEnemyAIController::ACEnemyAIController()
 {
