@@ -112,4 +112,15 @@ public:
 				OutArray.Add(Cast<T>(actor));
 		}
 	}
+
+	template<typename T>
+	static void GetBTObject(T** OutObject, FString InPath)
+	{
+		static ConstructorHelpers::FObjectFinder<T> BTObject(*InPath);
+		if (BTObject.Succeeded())
+		{
+			*OutObject = BTObject.Object;
+		}
+	}
+
 };
