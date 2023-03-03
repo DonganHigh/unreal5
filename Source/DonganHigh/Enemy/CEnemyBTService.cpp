@@ -16,18 +16,18 @@ void UCEnemyBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 
 	float DistanceToPlayer = 0.0f;
 
-	APawn* ControllingPawn = OwnerComp.GetAIOwner()->GetCharacter();
-	CheckNull(ControllingPawn);
+	ACEnemy* ControllingEnemy = Cast<ACEnemy>(OwnerComp.GetAIOwner()->GetCharacter());
+	CheckNull(ControllingEnemy);
 
-	UWorld* World = ControllingPawn->GetWorld();
+	UWorld* World = ControllingEnemy->GetWorld();
 	CheckNull(World);
 
-	FVector Center = ControllingPawn->GetActorLocation();
+	FVector Center = ControllingEnemy->GetActorLocation();
 	float DetectRadius = 600.0f;
 	//DrawDebugSphere(World, Center, DetectRadius, 32, FColor::Red, true, 1.0f);
 
 	TArray<FOverlapResult> OverlapResults;
-	FCollisionQueryParams CollisionQueryParam(NAME_None, false, ControllingPawn);
+	FCollisionQueryParams CollisionQueryParam(NAME_None, false, ControllingEnemy);
 	bool bResult = World->OverlapMultiByChannel(OverlapResults,	Center,	FQuat::Identity, ECollisionChannel::ECC_GameTraceChannel1, FCollisionShape::MakeSphere(DetectRadius), CollisionQueryParam);
 
 	if (bResult)
@@ -40,7 +40,7 @@ void UCEnemyBTService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 			if (Character->GetController()->IsPlayerController())
 			{
 				OwnerComp.GetBlackboardComponent()->SetValueAsObject(ACEnemyAIController::Key_TargetActor, Character);
-				DistanceToPlayer = ControllingPawn->GetDistanceTo(Character);
+				DistanceToPlayer = ControllingEnemy->GetDistanceTo(Character);
 			}
 		}
 	}

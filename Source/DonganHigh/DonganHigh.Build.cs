@@ -8,6 +8,8 @@ public class DonganHigh : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
+        PublicIncludePaths.Add(ModuleDirectory);
+
         PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "NavigationSystem", "AIModule", "Niagara", "UMG", "GameplayTasks" });
     }
 }
