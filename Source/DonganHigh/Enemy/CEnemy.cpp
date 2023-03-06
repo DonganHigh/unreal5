@@ -8,20 +8,11 @@
 
 ACEnemy::ACEnemy()
 {
-	PrimaryActorTick.bCanEverTick = true;
-
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
-
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-
 	if (ZombieType == -1)
 	{
-		ZombieType = FMath::RandRange(0, 2);
+		//ZombieType = FMath::RandRange(0, 2);
+		ZombieType = 0;
 	}
-
-	CHelpers::CreateActorComponent<UCStateComponent>(this, &State, "State");
 
 	USkeletalMesh* mesh;
 	CHelpers::GetAsset<USkeletalMesh>(&mesh, "SkeletalMesh'/Game/Characters/Mannequin_UE4/Meshes/SK_Mannequin.SK_Mannequin'");
@@ -43,7 +34,7 @@ ACEnemy::ACEnemy()
 
 	GetMesh()->SetSkeletalMesh(mesh);
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
-	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0)); 
+	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
 
 	TSubclassOf<UCEnemyAnimInstance> animInstance;
 	CHelpers::GetClass<UCEnemyAnimInstance>(&animInstance, "AnimBlueprint'/Game/Characters/Enemy/ABP_Enemy.ABP_Enemy_C'");
@@ -59,10 +50,8 @@ ACEnemy::ACEnemy()
 void ACEnemy::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	Health = MaxHealth;
-	GetCharacterMovement()->MaxWalkSpeed = 200.0f;
 
+	GetCharacterMovement()->MaxWalkSpeed = 200.0f;
 }
 
 void ACEnemy::Tick(float DeltaTime)
@@ -74,5 +63,16 @@ void ACEnemy::Attack()
 {
 	State->SetAttackState();
 
-	PlayAnimMontage(Attack01);
+	switch (FMath::RandRange(0, 2))
+	{
+	case 0:
+		PlayAnimMontage(Attack01);
+		break;
+	case 1:
+		PlayAnimMontage(Attack02);
+		break;
+	case 2:
+		PlayAnimMontage(Attack03);
+		break;
+	}
 }

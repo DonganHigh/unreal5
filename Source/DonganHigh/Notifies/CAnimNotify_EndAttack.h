@@ -8,6 +8,7 @@ UCLASS()
 class DONGANHIGH_API UCAnimNotify_EndAttack : public UAnimNotify
 {
 	GENERATED_BODY()
+
 public:
 	FString GetNotifyName_Implementation() const override;
 

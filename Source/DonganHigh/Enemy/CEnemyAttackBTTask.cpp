@@ -17,7 +17,7 @@ EBTNodeResult::Type UCEnemyAttackBTTask::ExecuteTask(UBehaviorTreeComponent& Own
 	Super::ExecuteTask(OwnerComp, NodeMemory);
 
 	ACEnemy* ControllingEnemy = Cast<ACEnemy>(OwnerComp.GetAIOwner()->GetCharacter());
-	if (nullptr == ControllingEnemy) return EBTNodeResult::Failed;
+	if (ControllingEnemy == nullptr) return EBTNodeResult::Failed;
 	
 	ControllingEnemy->StopAnimMontage();
 	ControllingEnemy->Attack();
@@ -30,11 +30,10 @@ void UCEnemyAttackBTTask::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* Nod
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 
 	ACEnemy* ControllingEnemy = Cast<ACEnemy>(OwnerComp.GetAIOwner()->GetCharacter());
-	CheckNull(ControllingEnemy);
-
+	if (ControllingEnemy == nullptr) FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+	
 	UCStateComponent* state = CHelpers::GetComponent<UCStateComponent>(ControllingEnemy);
-	CheckNull(state);
-
-	if (state->IsIdleState())
-		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+	if (state == nullptr) FinishLatentTask(OwnerComp, EBTNodeResult::Failed);
+	
+	if (state->IsIdleState()) FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);		
 }

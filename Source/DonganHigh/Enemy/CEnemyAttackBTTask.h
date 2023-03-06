@@ -12,7 +12,6 @@ public:
 	UCEnemyAttackBTTask();
 
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
-	//틱 넣어서 스테이트가 idle시 성공반환
 
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
