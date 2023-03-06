@@ -17,5 +17,4 @@ void UCCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 	Speed = Owner->GetVelocity().Size2D();
 	Direction = CalculateDirection(Owner->GetVelocity(), Owner->GetActorRotation());
-
 }

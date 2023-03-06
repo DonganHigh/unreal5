@@ -1,17 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "CCharacter.h"
 #include "CEnemy.generated.h"
 
 UCLASS()
-class DONGANHIGH_API ACEnemy : public ACharacter
+class DONGANHIGH_API ACEnemy : public ACCharacter
 {
 	GENERATED_BODY()
-
-protected:
-	UPROPERTY(VisibleDefaultsOnly, Category = "Component")
-		class UCStateComponent* State;
 
 public:
 	ACEnemy();
@@ -26,7 +22,7 @@ public:
 	FORCEINLINE int GetZombieType() { return ZombieType; }
 
 public:
-	void Attack();
+	void Attack() override;
 
 private:
 	UAnimMontage* Attack01;
@@ -34,7 +30,5 @@ private:
 	UAnimMontage* Attack03;
 
 private:
-	float Health;
-	float MaxHealth;
 	int ZombieType = -1;
 };

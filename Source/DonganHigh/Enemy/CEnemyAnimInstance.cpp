@@ -16,5 +16,4 @@ void UCEnemyAnimInstance::NativeBeginPlay()
 void UCEnemyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
-
 }
