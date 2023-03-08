@@ -1,5 +1,6 @@
 #include "CPlayer.h"
 #include "Global.h"
+#include "CPlayerAnimInstance.h"
 
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -14,8 +15,8 @@ ACPlayer::ACPlayer()
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
 	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
 
+	GetMesh()->SetCollisionProfileName(TEXT("Player"));
 
-	// Create a camera boom...
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
 	SpringArmComponent->SetupAttachment(RootComponent);
 	SpringArmComponent->SetUsingAbsoluteRotation(true);
@@ -23,10 +24,15 @@ ACPlayer::ACPlayer()
 	SpringArmComponent->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f));
 	SpringArmComponent->bDoCollisionTest = false;
 
-	// Create a camera...
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	CameraComponent->SetupAttachment(SpringArmComponent, USpringArmComponent::SocketName);
 	CameraComponent->bUsePawnControlRotation = false;
+
+
+	TSubclassOf<UCPlayerAnimInstance> animInstance;
+	CHelpers::GetClass<UCPlayerAnimInstance>(&animInstance, "AnimBlueprint'/Game/Characters/Player/ABP_Player.ABP_Player_C'");
+	GetMesh()->SetAnimClass(animInstance);
+
 }
 
 void ACPlayer::BeginPlay()
