@@ -16,9 +16,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Character")
 		float Direction;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Character")
-		bool Jumping;
-
 public:
 	virtual void NativeBeginPlay() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;

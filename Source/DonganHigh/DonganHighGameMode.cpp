@@ -11,7 +11,7 @@
 ADonganHighGameMode::ADonganHighGameMode()
 {
 	//PlayerControllerClass = ADonganHighPlayerController::StaticClass();
-	//
+	
 	//static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/TopDown/Blueprints/BP_TopDownCharacter"));
 	//if (PlayerPawnBPClass.Class != nullptr)
 	//{
@@ -24,6 +24,6 @@ ADonganHighGameMode::ADonganHighGameMode()
 	//	PlayerControllerClass = PlayerControllerBPClass.Class;
 	//}
 
-	PlayerControllerClass = ACPlayerController::StaticClass();
 	CHelpers::GetClass<APawn>(&DefaultPawnClass, "Blueprint'/Game/Characters/Player/BPPlayer.BPPlayer_C'");
+	PlayerControllerClass = ACPlayerController::StaticClass();
 }

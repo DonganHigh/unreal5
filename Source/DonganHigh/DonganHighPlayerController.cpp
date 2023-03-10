@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "DonganHighPlayerController.h"
+#include "Global.h"
 #include "GameFramework/Pawn.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NiagaraSystem.h"
@@ -39,6 +40,7 @@ void ADonganHighPlayerController::PlayerTick(float DeltaTime)
 		APawn* const MyPawn = GetPawn();
 		if(MyPawn)
 		{
+			CLog::Print(Hit.Location, 1);
 			FVector WorldDirection = (HitLocation - MyPawn->GetActorLocation()).GetSafeNormal();
 			MyPawn->AddMovementInput(WorldDirection, 1.f, false);
 		}

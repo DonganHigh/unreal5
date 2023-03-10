@@ -1,10 +1,13 @@
 #include "CPlayer.h"
 #include "Global.h"
 #include "CPlayerAnimInstance.h"
+#include "Components/CWeaponComponent.h"
+#include "Components/CStateComponent.h"
 
-#include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PlayerController.h"
 
 ACPlayer::ACPlayer()
 {
@@ -28,11 +31,11 @@ ACPlayer::ACPlayer()
 	CameraComponent->SetupAttachment(SpringArmComponent, USpringArmComponent::SocketName);
 	CameraComponent->bUsePawnControlRotation = false;
 
-
 	TSubclassOf<UCPlayerAnimInstance> animInstance;
 	CHelpers::GetClass<UCPlayerAnimInstance>(&animInstance, "AnimBlueprint'/Game/Characters/Player/ABP_Player.ABP_Player_C'");
 	GetMesh()->SetAnimClass(animInstance);
 
+	CHelpers::CreateActorComponent<UCWeaponComponent>(this, &Weapon, "Weapon");
 }
 
 void ACPlayer::BeginPlay()
@@ -45,9 +48,26 @@ void ACPlayer::BeginPlay()
 void ACPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//if (!Weapon->IsUnarmedMode())
+	//{
+		LookAtCursor();
+	//}
+	
 }
 
-void ACPlayer::Attack()
+void ACPlayer::LookAtCursor()
 {
-	CLog::Print("Pong", 1);
+	FHitResult hitResult;
+	bool bResult = (UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHitResultUnderCursor(ECC_Visibility, true, hitResult));
+
+	if (bResult)
+	{
+		SetActorRotation(UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), FVector(hitResult.ImpactPoint.X, hitResult.ImpactPoint.Y, GetActorLocation().Z)));
+	}	
+}
+
+void ACPlayer::WheelZoom(float AxisValue)
+{
+	//SpringArmComponent->TargetArmLength
 }

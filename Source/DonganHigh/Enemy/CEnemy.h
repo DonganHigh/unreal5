@@ -22,7 +22,7 @@ public:
 	FORCEINLINE int GetZombieType() { return ZombieType; }
 
 public:
-	void Attack() override;
+	void Attack();
 
 private:
 	UAnimMontage* Attack01;
